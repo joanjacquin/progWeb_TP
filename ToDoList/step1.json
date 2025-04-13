@@ -1,0 +1,105 @@
+
+{"test1":[
+    {
+        "idPrio": 1,
+        "priority":"Very important"
+    },
+    {
+        "idPrio": 2,
+        "priority":"Important"
+    },
+    {
+        "idPrio": 3,
+        "priority":"Not so important"
+    },
+    {
+        "idPrio": 4,
+        "priority":"Not important"
+    },
+    {
+        "idPrio": 5,
+        "priority":"Optional"
+    }
+],
+
+"test2":[
+    {
+        "idAsso": 1,
+        "abrev":"ADEM",
+        "nom":"Amicale des Étudiant.es en Mathématiques"
+    },
+    {
+        "idAsso": 2,
+        "abrev":"AIUS",
+        "nom":"Amicale des Informaticien.ne.s de l'Université de Strasbourg"
+    },
+    {
+        "idAsso": 3,
+        "abrev":"AFGES",
+        "nom":"Association Fédérative Générale des Étudiants de Strasbourg"
+    }
+],
+
+"test3":[
+    {
+        "idMascotte": 1,
+        "mascotte":"Rie"
+    },
+    {
+        "idMascotte": 2,
+        "mascotte":"Gulliver"
+    },
+    {
+        "idMascotte": 3,
+        "mascotte":"canard"
+    }
+],
+
+"test4":[
+    {
+        "idGroup": 1,
+        "groupe":"The Warning",
+        "year_creation":"2013",
+        "genres": ["Rock", "Hard rock"],
+        "members":["Daniela Villarreal Vélez", "Paulina Villarreal Vélez", "Alejandra Villarreal Vélez"]
+    },
+    {
+        "idGroup": 2,
+        "groupe":"My Chemical Romance",
+        "year_creation":"2001",
+        "genres": ["Alternative rock", "emo", "pop-punk", "post-hardcore", "punk rock", "hard rock"],
+        "members":["Gerard Way", "Ray Toro", "Mikey Way", "Frank Iero"]
+    },
+    {
+        "idGroup": 3,
+        "groupe":"Good Kid",
+        "year_creation":"2015",
+        "genres": ["Indie rock"],
+        "members":["Nick Frosst", "Jon Kereliuk", "Michael Kozakov", "David Wood", "Jacob Tsafatinos"]
+    }
+],
+
+"test1D":[
+    {
+        "idPrio": 1,
+        "priority":"Very important",
+        "idAsso": 1,
+        "idMascotte": 1,
+        "idGroup": 1
+    },
+    {
+        "idPrio": 2,
+        "priority":"Important",
+        "idAsso": 2,
+        "idMascotte": 2,
+        "idGroup": 2
+    },
+    {
+        "idPrio": 3,
+        "priority":"Not so important",
+        "idAsso": 3,
+        "idMascotte": 3,
+        "idGroup": 3
+    }
+]
+}
