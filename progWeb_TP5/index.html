@@ -9,5 +9,87 @@
     </style>
 </head>
 <body>
+    <script>
+        console.log("Ex 1");
+        for (let A = 1; A <= 9; A++) {
+            for (let B = 1; B <= 9; B++) {
+                for (let C = 1; C <= 9; C++) {
+                    const valeur1 = A * 100 + B * 10 + C;
+                    const valeur2 = Math.pow(A, 3) + Math.pow(B, 3) + Math.pow(C, 3);
+
+                    if (valeur1 === valeur2) {
+                        console.log(`Solution trouvée : A=${A}, B=${B}, C=${C}`);
+                    }
+                }
+            }
+        }
+
+        console.log("Ex 2");
+        function rendreMonnaie(montant) {
+            const valeurs = [200, 100, 50, 20, 10, 5, 2, 1];
+            const renduMonnaie = new Array(valeurs.length).fill(0);
+
+            valeurs.forEach(function(valeur, index) {
+                if (montant >= valeur) {
+                    const nombre = Math.floor(montant / valeur);
+                    montant -= nombre * valeur;
+                    renduMonnaie[index] = nombre;
+                }
+            });
+
+            console.log("Détail de la monnaie rendue :");
+            valeurs.forEach(function(valeur, index) {
+                if (renduMonnaie[index] > 0) {
+                    console.log(`${renduMonnaie[index]} ${valeur === 1 ? 'pièce' : 'pièces'} de ${valeur}€`);
+                }
+            });
+        }
+        rendreMonnaie(468);
+
+        console.log("Ex 3");
+        function verifierCarteDeCredit(numeroCarte) {
+            // Convert number to string if not already the case
+            const numeroCarteStr = typeof numeroCarte === 'number' ? numeroCarte.toString() : numeroCarte;
+
+            // Extraire le dernier chiffre (chiffre de contrôle)
+            const chiffreDeControle = parseInt(numeroCarteStr.charAt(numeroCarteStr.length - 1), 10);
+
+            // Extraire le reste du numéro
+            const numeroSansControle = numeroCarteStr.substring(0, numeroCarteStr.length - 1);
+
+            // Transformer le reste du numéro en un tableau de chiffres
+            const digits = numeroSansControle.split('').map(Number);
+
+            // Inverser le tableau pour commencer par le chiffre le plus à droite
+            digits.reverse();
+
+            // Luhn's algorithm
+            let somme = 0;
+            digits.forEach(function(digit, index) {
+                let valeur = digit;
+                if (index % 2 === 1) { // Doubler chaque deuxième chiffre
+                    valeur *= 2;
+                    if (valeur > 9) { // Si le résultat est supérieur à 9, soustraire 9
+                        valeur -= 9;
+                    }
+                }
+                somme += valeur;
+            });
+
+            // Calculer le chiffre de contrôle
+            const chiffreDeControleCalcule = (10 - (somme % 10)) % 10;
+
+            // Afficher le résultat
+            const message = chiffreDeControleCalcule === chiffreDeControle ? 'Validé' : 'Non Validé';
+            console.log(`Numéro de carte : ${numeroCarteStr}`);
+            console.log(`Chiffre de contrôle calculé : ${chiffreDeControleCalcule}`);
+            console.log(`Résultat : ${message}`);
+        }
+
+        verifierCarteDeCredit('6011000990139424');
+        verifierCarteDeCredit('4927415210639003');
+
+
+    </script>
 </body>
 </html>
