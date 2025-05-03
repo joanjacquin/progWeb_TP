@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP5 exo3</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        function verifierCarteDeCredit(numeroCarte) {
+            // Convert number to string if not already the case
+            const numeroCarteStr = typeof numeroCarte === 'number' ? numeroCarte.toString() : numeroCarte;
+
+            // Extraire le dernier chiffre (control number)
+            const chiffreDeControle = parseInt(numeroCarteStr.charAt(numeroCarteStr.length - 1), 10);
+
+            // Extraire le reste du numéro
+            const numeroSansControle = numeroCarteStr.substring(0, numeroCarteStr.length - 1);
+
+            // Transformer le reste du numéro en un tableau de chiffres
+            const digits = numeroSansControle.split('').map(Number);
+
+            // Inverser le tableau
+            digits.reverse();
+
+            // Luhn's algorithm
+            let somme = 0;
+            digits.forEach(function(digit, index) {
+                let valeur = digit;
+                if (index % 2 === 1) { // Doubler chaque deuxième chiffre
+                    valeur *= 2;
+                    if (valeur > 9) { // Si le résultat est supérieur à 9, soustraire 9
+                        valeur -= 9;
+                    }
+                }
+                somme += valeur;
+            });
+
+            // Calculer le chiffre de contrôle
+            const chiffreDeControleCalcule = (10 - (somme % 10)) % 10;
+
+
+            const message = chiffreDeControleCalcule === chiffreDeControle ? 'Validé' : 'Non Validé';
+            console.log(`Numéro de carte : ${numeroCarteStr}`);
+            console.log(`Chiffre de contrôle calculé : ${chiffreDeControleCalcule}`);
+            console.log(`Résultat : ${message}`);
+        }
+
+        //Tests
+        verifierCarteDeCredit(4927415210639003); //True
+        verifierCarteDeCredit('6011000990139424'); //False
+    </script>
+</body>
+</html>

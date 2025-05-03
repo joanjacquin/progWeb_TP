@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP5 exo1</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        for (let A = 1; A <= 9; A++){ // el famoso boucle for
+            for (let B = 1; B <= 9; B++){
+                for (let C = 1; C <= 9; C++){ // miam le O(9^3)
+                    const valeur1 = A * 100 + B * 10 + C;
+                    const valeur2 = Math.pow(A, 3) + Math.pow(B, 3) + Math.pow(C, 3);
+
+                    if (valeur1 === valeur2){
+                        console.log(`Solution trouvée : A=${A}, B=${B}, C=${C}`);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

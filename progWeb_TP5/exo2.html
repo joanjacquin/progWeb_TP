@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP5 exo2</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        function rendreMonnaie(montant) {
+            const valeurs = [200, 100, 50, 20, 10, 5, 2, 1]; //Tableau des valleurs de billets et pièces
+            const renduMonnaie = new Array(valeurs.length).fill(0); //Tableau des monnaies à rendre (nbr de chaque)
+
+            console.log("Détail de la monnaie rendue sur "+montant+"€:");
+
+            valeurs.forEach(function(valeur, index) {
+                if (montant >= valeur) {
+                    const nombre = Math.floor(montant / valeur);
+                    montant -= nombre * valeur;
+                    renduMonnaie[index] = nombre;
+                }
+            });
+
+            //Print result
+            valeurs.forEach(function(valeur, index) {
+                if (renduMonnaie[index] > 0) {
+                    console.log(`${renduMonnaie[index]} pièce(s)/billet(s) de ${valeur}€`);
+                }
+            });
+        }
+
+        rendreMonnaie(369);
+    </script>
+</body>
+</html>
