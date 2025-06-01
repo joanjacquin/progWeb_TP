@@ -5,192 +5,265 @@
     <meta name="keywords" content="HTML, quizz">
     <meta name="theme-color" content="#1bb566">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.imgflip.com%2F3xfuqs.png&f=1&nofb=1&ipt=b54517b2c3cdc21fff110159f354ca58444a47642109a0cbfe0d36d5c2d1791c&ipo=images" type="image/png">
+    <link rel="icon" href="main-19581404.png" type="image/png">
     <title>Todolist</title>
+    <audio id="toggleSound" src="charming-twinkle-sound-for-fantasy-and-magic-250240.mp3" preload="auto"></audio>
     
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 20px;
-            padding: 0;
-            background: linear-gradient(to right, #e3f2fd, #bbdefb);
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            margin: auto;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            border-radius: 15px;
-            border: 3px solid #007bff;
-            animation: fadeIn 1s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        header {
-            text-align: center;
-            background: linear-gradient(to right, #007bff, #0056b3);
-            color: white;
-            padding: 20px;
-            border-radius: 15px 15px 0 0;
-        }
-        h1, h2, h3 {
-            color: #004085;
-        }
-        section {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: #f1f8ff;
-            border-radius: 10px;
-            border-left: 5px solid #007bff;
-            transition: transform 0.3s ease-in-out;
-        }
-        section:hover {
-            transform: scale(1.02);
-        }
-        ul {
-            padding-left: 20px;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.9em;
-            background: #007bff;
-            color: white;
-            padding: 15px;
-            border-radius: 0 0 15px 15px;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        a:hover {
-            color: #90caf9;
-        }
-        abbr {
-            text-decoration: none;
-        }
+    <style>body {
+  font-family: 'Comic Neue', cursive;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(ellipse at top, #fceff9 0%, #ffeefc 100%);
+  background-size: cover;
+  background-attachment: fixed;
+  color: #4d3d56;
+}
 
-        /***************
-        *   contact form
-        ***************/
-        input[type=text], select, textarea, input[type=url], input[type=date] {
-            background-color: #ffffff;
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            resize: vertical;
-        }
+.container {
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 30px auto;
+  box-shadow: 0 0 20px #fbcce7;
+  border-radius: 25px;
+  border: 4px dashed #ffb3d1;
+  animation: fadeIn 1s ease-in-out;
+}
 
-        input[type=submit] {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        input[type=submit]:hover {
-            background-color: #0056b3;
-        }
-        /* contact form */
+header {
+  text-align: center;
+  background: linear-gradient(to right, #ffc0cb, #ff99bb);
+  color: white;
+  padding: 25px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 5px 10px #f99ac9;
+}
 
+h1 {
+  font-size: 2.4em;
+  color: #fff;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px #d75c97;
+}
 
-        /***************
-        *   dark mode
-        ***************/
-        .dark-mode {
-            background: #121212;
-            color: #e0e0e0;
-        }
-        .dark-mode h2{
-            color: #3b87da;
-        }
-        .dark-mode h3 {
-            color: #3b87da;
-        }
-        .dark-mode .container {
-            background: #1e1e1e;
-            color: #e0e0e0;
-            border-color: #90caf9;
-        }
-        .dark-mode .radio:checked ~ .content p {
-            color: #e0e0e0;
-        }
-        .dark-mode .language-bar {
-            background: #444444;
-        }
-        .dark-mode input[type=text] {
-            color: #e0e0e0;
-            background-color: #2a2a2a;
-        }
-        .dark-mode input[type=date] {
-            color: #e0e0e0;
-            background-color: #2a2a2a;
-        }
-        .dark-mode input[type=url] {
-            color: #e0e0e0;
-            background-color: #2a2a2a;
-        }
-        .dark-mode select {
-            color: #e0e0e0;
-            background-color: #2a2a2a;
-        }
-        .dark-mode textarea {
-            background-color: #2a2a2a;
-            color: #e0e0e0;
-        }
-        
-        .dark-mode section {
-            background: #2a2a2a;
-            border-left: 5px solid #90caf9;
-        }
+h2, h3 {
+  color: #ff66b2;
+  text-align: center;
+}
 
-        /*form button*/
-        .dark-mode input[type=submit] {
-            background-color: #90caf9;
-            color: #1e1e1e;
-        }
-        .dark-mode input[type=submit]:hover {
-            background-color: #0056b3;
-        }
-        /**/
+section {
+  background: #fff0f5;
+  border-left: 5px dotted #ffaacc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px #ffe0ed;
+  transition: transform 0.3s ease-in-out;
+}
 
-        .dark-mode footer {
-            background: #0d47a1;
-        }
-        .dark-mode button {
-            background: #90caf9;
-            color: #121212;
-        }
+section:hover {
+  transform: scale(1.01);
+}
 
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        /* dark mode*/
+label {
+  font-weight: bold;
+  color: #8b3052;
+}
 
-        input:invalid{
-            border: solid #aa1919;
-        }
+input[type=text],
+input[type=url],
+input[type=date],
+select,
+textarea {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 12px;
+  border: 2px dashed #ff99bb;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  font-family: 'Comic Neue', cursive;
+}
+
+input[type=submit],
+button[type=button] {
+  background-color: #ffc0cb;
+  color: #8b3052;
+  padding: 12px 20px;
+  border: 2px dashed #ff99bb;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px #ff99bb;
+}
+
+input[type=submit]:hover,
+button[type=button]:hover {
+  background-color: #ffb6c1;
+  transform: scale(1.05);
+}
+
+a {
+  color: #ff66b2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #d14f88;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  background: #ffc0cb;
+  color: #fff;
+  padding: 15px;
+  border-radius: 0 0 20px 20px;
+  margin-top: 30px;
+  box-shadow: 0 -3px 10px #fbcce7;
+}
+
+#switch {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: #ffe4ec;
+  color: #8b3052;
+  font-size: 0.9em;
+  border-radius: 20px;
+  border: 2px dashed #ffaacc;
+  padding: 8px 15px;
+  box-shadow: 2px 2px 0 #ffaacc;
+  transition: all 0.3s;
+}
+
+#switch:hover {
+  background-color: #ffccdd;
+}
+
+.dark-mode {
+  background: #0f1021 url('https://cdn.pixabay.com/photo/2017/08/30/07/52/stars-2693203_1280.png') repeat;
+  background-size: cover;
+  color: #e0d7f9;
+}
+
+.dark-mode .container {
+  background: #1e1e2e;
+  color: #f5d0f7;
+  border-color: #c084fc;
+  box-shadow: 0 0 15px #c084fc;
+}
+
+.dark-mode header {
+  background: linear-gradient(to right, #c084fc, #7c3aed);
+  color: #fff;
+  box-shadow: 0 3px 10px #a78bfa;
+}
+
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
+  color: #e0c3fc;
+  text-shadow: 1px 1px #4c1d95;
+}
+
+.dark-mode section {
+  background: #2c2c3a;
+  border-left: 5px dotted #c084fc;
+  color: #fcefff;
+}
+
+.dark-mode input[type=text],
+.dark-mode input[type=date],
+.dark-mode input[type=url],
+.dark-mode select,
+.dark-mode textarea {
+  background-color: #2a2139;
+  color: #ffe6ff;
+  border: 2px dashed #d8b4fe;
+}
+
+.dark-mode input[type=text]::placeholder,
+.dark-mode textarea::placeholder {
+  color: #bfa9dd;
+}
+
+.dark-mode input[type=submit],
+.dark-mode button[type=button],
+.dark-mode button {
+  background-color: #a78bfa;
+  color: #1e1e2e;
+  border: 2px dashed #d8b4fe;
+  box-shadow: 2px 2px 5px #6d28d9;
+}
+
+.dark-mode input[type=submit]:hover,
+.dark-mode button[type=button]:hover,
+.dark-mode button:hover {
+  background-color: #c084fc;
+  color: white;
+}
+
+.dark-mode footer {
+  background: #7c3aed;
+  color: #ffdcfa;
+  box-shadow: 0 -3px 8px #a78bfa;
+}
+
+.dark-mode a {
+  color: #c4b5fd;
+}
+
+.dark-mode a:hover {
+  color: #e9d5ff;
+}
+#switch {
+  display: block;
+  margin: 30px auto 10px auto;
+  background: #ffe4ec;
+  color: #8b3052;
+  font-size: 1em;
+  border-radius: 20px;
+  border: 2px dashed #ffaacc;
+  padding: 10px 20px;
+  box-shadow: 2px 2px 0 #ffaacc;
+  transition: all 0.3s ease-in-out;
+  font-family: 'Comic Neue', cursive;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+}
+
+#switch:hover {
+  background-color: #ffccdd;
+  transform: scale(1.05);
+}
+
+.dark-mode #switch {
+  background: #c084fc;
+  color: #1e1e2e;
+  border-color: #d8b4fe;
+  box-shadow: 2px 2px 5px #6d28d9;
+}
+form button[type="button"] {
+  display: block;
+  margin: 20px auto;
+}
+#tacheColor {
+    color: #ffc0cb;
+}
+.dark-mode #tacheColor {
+    color: #e0c3fc;
+    text-shadow: 1px 1px #4c1d95;
+}
     </style>
     <script id="priorityData" type="application/json">
         {
@@ -206,7 +279,7 @@
 </head>
 <body>
     <noscript>Sorry, your browser does not support JavaScript!</noscript>
-    <button id="switch" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button id="switch" onclick="toggleDarkMode()">Mode nuit</button>
     <div class="container">
         <header>
             <h1>ToDoList</h1>
@@ -215,7 +288,7 @@
         </header>
         <section id="form">
             <div class="container">
-                <h1>Ajouter une tâche</h1>
+                <h1 id="tacheColor">Ajouter une tâche</h1>
                 <form id="todoForm">
                     <div class="form-group">
                         <label for="taskTitle">Titre de la tâche</label>
@@ -276,20 +349,35 @@
 
     <script>
         function toggleDarkMode() {
-            if (document.body.classList.contains('dark-mode')){
-                document.getElementById("switch").textContent="Toggle Dark Mode";
-            }
-            else{
-                document.getElementById("switch").textContent="Toggle Light Mode";
-            }
-            document.body.classList.toggle("dark-mode");
+            const btn = document.getElementById("switch");
+            const sound = document.getElementById("toggleSound");
+            const isDark = document.body.classList.toggle("dark-mode");
+
+            // Joue le son pipou ✨
+            sound.currentTime = 0;
+            sound.play();
+
+            // Met à jour le bouton
+            btn.innerHTML = isDark ? "Mode clair" : "Mode nuit";
+
+            // Sauvegarde l'état dans localStorage
+            localStorage.setItem("theme", isDark ? "dark" : "light");
         }
 
-        function rickroll(){
-            event.preventDefault(); // Empêche la soumission du formulaire
-            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
-        }
+        // Applique le thème sauvegardé dès le chargement
+        window.addEventListener("DOMContentLoaded", () => {
+            const savedTheme = localStorage.getItem("theme");
+            const btn = document.getElementById("switch");
+
+            if (savedTheme === "dark") {
+            document.body.classList.add("dark-mode");
+            btn.innerHTML = "Mode clair";
+            } else {
+            btn.innerHTML = "Mode nuit";
+            }
+        });
     </script>
+
 
     <script>
         function saveTask() {
