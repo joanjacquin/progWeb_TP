@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="HTML, quizz">
+    <meta name="theme-color" content="#1bb566">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.imgflip.com%2F3xfuqs.png&f=1&nofb=1&ipt=b54517b2c3cdc21fff110159f354ca58444a47642109a0cbfe0d36d5c2d1791c&ipo=images" type="image/png">
+    <title>Todolist</title>
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 20px;
+            padding: 0;
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 3px solid #007bff;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        header {
+            text-align: center;
+            background: linear-gradient(to right, #007bff, #0056b3);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+        }
+        h1, h2, h3 {
+            color: #004085;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f1f8ff;
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+            transition: transform 0.3s ease-in-out;
+        }
+        section:hover {
+            transform: scale(1.02);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 0 0 15px 15px;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #90caf9;
+        }
+        abbr {
+            text-decoration: none;
+        }
+
+        /***************
+        *   contact form
+        ***************/
+        input[type=text], select, textarea, input[type=url], input[type=date] {
+            background-color: #ffffff;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        input[type=submit]:hover {
+            background-color: #0056b3;
+        }
+        /* contact form */
+
+
+        /***************
+        *   dark mode
+        ***************/
+        .dark-mode {
+            background: #121212;
+            color: #e0e0e0;
+        }
+        .dark-mode h2{
+            color: #3b87da;
+        }
+        .dark-mode h3 {
+            color: #3b87da;
+        }
+        .dark-mode .container {
+            background: #1e1e1e;
+            color: #e0e0e0;
+            border-color: #90caf9;
+        }
+        .dark-mode .radio:checked ~ .content p {
+            color: #e0e0e0;
+        }
+        .dark-mode .language-bar {
+            background: #444444;
+        }
+        .dark-mode input[type=text] {
+            color: #e0e0e0;
+            background-color: #2a2a2a;
+        }
+        .dark-mode input[type=date] {
+            color: #e0e0e0;
+            background-color: #2a2a2a;
+        }
+        .dark-mode input[type=url] {
+            color: #e0e0e0;
+            background-color: #2a2a2a;
+        }
+        .dark-mode select {
+            color: #e0e0e0;
+            background-color: #2a2a2a;
+        }
+        .dark-mode textarea {
+            background-color: #2a2a2a;
+            color: #e0e0e0;
+        }
+        
+        .dark-mode section {
+            background: #2a2a2a;
+            border-left: 5px solid #90caf9;
+        }
+
+        /*form button*/
+        .dark-mode input[type=submit] {
+            background-color: #90caf9;
+            color: #1e1e1e;
+        }
+        .dark-mode input[type=submit]:hover {
+            background-color: #0056b3;
+        }
+        /**/
+
+        .dark-mode footer {
+            background: #0d47a1;
+        }
+        .dark-mode button {
+            background: #90caf9;
+            color: #121212;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        /* dark mode*/
+
+        input:invalid{
+            border: solid #aa1919;
+        }
+    </style>
+    <script id="priorityData" type="application/json">
+        {
+        "priorityOrder": [
+            { "idPrio": 1, "priority": "Urgent" },
+            { "idPrio": 2, "priority": "Très important" },
+            { "idPrio": 3, "priority": "Important" },
+            { "idPrio": 4, "priority": "Peu important" },
+            { "idPrio": 5, "priority": "Optionel" }
+        ]
+        }
+    </script>
+</head>
+<body>
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+    <button id="switch" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <div class="container">
+        <header>
+            <h1>ToDoList</h1>
+            <p>Une incroyable innovation proposée par moi-même.</p>
+            <p>Faux, ça existait déjà, et en mieux.</p>
+        </header>
+        <section id="form">
+            <div class="container">
+                <h1>Ajouter une tâche</h1>
+                <form id="todoForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Titre de la tâche</label>
+                        <input type="text" id="taskTitle" name="taskTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" name="taskDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDate">Date d'échéance</label>
+                        <input type="date" id="taskDate" name="taskDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskPriority">Priorité</label>
+                        <select id="taskPriority" name="taskPriority" required>
+                            <option value="" disabled selected hidden>Please Choose...</option>
+                        </select>
+
+                        <script>
+                            const priorityJSON = JSON.parse(document.getElementById("priorityData").textContent);
+                            const selectPriority = document.getElementById("taskPriority");
+
+                            priorityJSON.priorityOrder.forEach(item => {
+                                const optionHTML = `<option value="${item.priority}">${item.priority}</option>`;
+                                selectPriority.insertAdjacentHTML("beforeend", optionHTML);
+                            });
+                        </script>
+
+                    </div>
+
+                    <!--
+                    <div class="form-group">
+                        <label for="taskStatus">Statut</label>
+                        <select id="taskStatus" name="taskStatus" required>
+                            <option value="">Sélectionnez un statut</option>
+                            <option value="À faire">À faire</option>
+                            <option value="En cours">En cours</option>
+                            <option value="Terminé">Terminé</option>
+                        </select>
+                    </div>
+                    -->
+                    <button type="button" onclick="saveTask()">Ajouter la tâche</button>
+                </form>
+            </div>
+        </section>
+        <section>
+            <p style="text-align:center;">
+                <a href="taches.html">Voir le résumé des tâches</a>
+            </p>
+        </section>
+        <footer>
+            <p>&copy; 2025 Joan Jacquin. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+
+    <script>
+        function toggleDarkMode() {
+            if (document.body.classList.contains('dark-mode')){
+                document.getElementById("switch").textContent="Toggle Dark Mode";
+            }
+            else{
+                document.getElementById("switch").textContent="Toggle Light Mode";
+            }
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function rickroll(){
+            event.preventDefault(); // Empêche la soumission du formulaire
+            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+        }
+    </script>
+
+    <script>
+        function saveTask() {
+            const form = document.getElementById("todoForm");
+
+            // Vérifie la validité des champs
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Lecture des champs du formulaire
+            let title = document.getElementById("taskTitle").value;
+            let description = document.getElementById("taskDescription").value;
+            let date = document.getElementById("taskDate").value;
+            let priority = document.getElementById("taskPriority").value;
+
+            // Initialisation ou récupération du tableau de tâches
+            let taskList = [];
+            const storedTasks = localStorage.getItem("taskList");
+
+            if (storedTasks) {
+                taskList = JSON.parse(storedTasks);
+            }
+
+            // Création de la tâche avec ID auto-incrémenté
+            let newTask = {
+                id: taskList.length + 1,
+                title: title,
+                description: description,
+                date: date,
+                priority: priority,
+            };
+
+            console.log("Nouvelle tâche :", newTask);
+
+            // Ajout à la liste
+            taskList.push(newTask);
+
+            // Sauvegarde dans localStorage
+            localStorage.setItem("taskList", JSON.stringify(taskList));
+
+            // Réinitialisation du formulaire
+            form.reset();
+        }
+    </script>
+</body>
+</html>

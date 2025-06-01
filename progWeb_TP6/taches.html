@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Résumé des tâches</title>
+  <style>
+    table {
+      width: 90%;
+      margin: auto;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+    h1 {
+      text-align: center;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Résumé des tâches enregistrées</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Priorité</th>
+      </tr>
+    </thead>
+    <tbody id="taskTableBody"></tbody>
+  </table>
+
+  <!-- Données de priorité : simulées ici (ou à charger avec fetch si besoin) -->
+  <script id="priorityData" type="application/json">
+    [
+      { "idPrio": 1, "priority": "Urgent" },
+      { "idPrio": 2, "priority": "Très important" },
+      { "idPrio": 3, "priority": "Important" },
+      { "idPrio": 4, "priority": "Peu important" },
+      { "idPrio": 5, "priority": "Optionel" }
+    ]
+  </script>
+
+  <script>
+    document.onreadystatechange = function () {
+      if (document.readyState === "complete") {
+        afficherTaches();
+      }
+    };
+
+    function afficherTaches() {
+      const tbody = document.getElementById("taskTableBody");
+      let taskList = [];
+
+      // Lecture depuis localStorage
+      const stored = localStorage.getItem("taskList");
+      if (stored) {
+      taskList = JSON.parse(stored);
+      } else {
+      console.log("Aucune tâche trouvée dans localStorage");
+      }
+
+
+      console.log("Tâches récupérées :", taskList);
+
+      // Liste des priorités
+      const priorityList = JSON.parse(document.getElementById("priorityData").textContent);
+
+      let html = "";
+
+      taskList.forEach(task => {
+        // Trouver la priorité correspondante à partir de l'ID
+        const prioObj = priorityList.find(p => p.idPrio == task.idPrio);
+        const priorityLabel = prioObj ? prioObj.priority : "Inconnue";
+
+        html += `
+          <tr>
+            <td>${task.id}</td>
+            <td>${task.title}</td>
+            <td>${task.description}</td>
+            <td>${task.date}</td>
+            <td>${priorityLabel}</td>
+          </tr>
+        `;
+      });
+
+      tbody.insertAdjacentHTML("beforeend", html);
+    }
+  </script>
+</body>
+</html>
